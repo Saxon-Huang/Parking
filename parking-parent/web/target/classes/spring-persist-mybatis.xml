@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+    <!-- 1. data source -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="driverClassName" value="${jdbc.driver}"/>
+    </bean>
+
+    <!-- 2. sqlSessionFactoryBean: 用于读取mapper.xml文件，使mybatis能生成*Mapper的代理类和对象。 -->
+    <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- Mybatis全局配置文件 -->
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+
+        <!--所有mapper的sql方法-->
+        <property name="mapperLocations" value="classpath:mybatis/mapper/*Mapper.xml"/>
+
+        <!--数据源-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 3. scanner: 用于将生成的代理对象扫描进ioc容器(此处不能用component-scanner扫描)，使autowired能装配。-->
+    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="mapper"/>
+    </bean>
+</beans>

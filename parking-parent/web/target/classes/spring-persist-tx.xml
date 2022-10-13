@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <import resource="spring-persist-mybatis.xml"/><!-- dataSource bean，不import在从ioc中找到dataSource前会有警告-->
+
+    <!-- 将service的component扫描金aoc容器-->
+    <context:component-scan base-package="service"/>
+
+    <!-- 配置事务管理器 transaction manager -->
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 配置事务切面 （用注解？） -->
+    <aop:config>
+        <aop:pointcut id="txPointcut" expression="execution(* *..*ServiceImpl.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
+    </aop:config>
+
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="list*" read-only="true"/>
+            <tx:method name="count*" read-only="true"/>
+
+            <!--
+            propagation默认值REQUIRED，可以使用当前事务，但可能会被迫一起回滚
+            propagation="REQUIRES_NEW":新建事务
+            -->
+            <tx:method name="save*" propagation="REQUIRES_NEW" rollback-for="java.lang.Exception"/>
+            <tx:method name="remove*" propagation="REQUIRES_NEW" rollback-for="java.lang.Exception"/>
+            <tx:method name="update*" propagation="REQUIRES_NEW" rollback-for="java.lang.Exception"/>
+        </tx:attributes>
+    </tx:advice>
+</beans>

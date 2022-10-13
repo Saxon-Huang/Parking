@@ -1,0 +1,9 @@
+create table t_admin ( 
+adm_id int not null auto_increment, 
+adm_acct varchar(255) not null, 
+adm_pswd char(32) not null, 
+primary key(adm_id)
+);
+
+INSERT INTO t_admin (adm_acct, adm_pswd) VALUES
+('hzc', '123');
