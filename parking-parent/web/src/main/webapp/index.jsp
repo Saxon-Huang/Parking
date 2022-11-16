@@ -13,6 +13,22 @@
         <script type="text/javascript" src="jquery/jquery-3.6.1.min.js"></script>
         <script type="text/javascript">
             $(function () {
+                $("#btn0").click(function () {
+                    var arr = [1, 2, 3, 4];
+                    $.ajax({
+                        "url": "test/ssm.html",
+                        "type": "post",
+                        "data": arr,
+                        "dataType": "text",
+                        "success": function (response) {
+                            alert(response);
+                        },
+                        "error": function (response) {
+                            alert(response);
+                        },
+                    })
+                })
+
                 $("#btn1").click(function () {
                     var arr = [1, 2, 3, 4];
 
@@ -31,12 +47,34 @@
                         },
                     })
                 })
+
+                $("#btn2").click(function () {
+
+
+                    var requestBody = JSON.stringify(null);
+                    $.ajax({
+                        "url": "error0.html",
+                        "type": "post",
+                        "data": requestBody,
+                        "contentType": "application/json;charset=UTF-8",
+                        "dataType": "text",
+                        "success": function (response) {
+                            //alert(response);
+                        },
+                        "error": function (response) {
+                            //alert(response);
+                        },
+                    })
+                })
             })
         </script>
     </head>
     <body>
         <a href="test/ssm.html">测试ssm整合</a>
+        <a href="error0.html">test error</a>
         <p> paragraph </p>
+        <button id="btn0"> test ssm </button>
         <button id="btn1"> button 1</button>
+        <button id="btn2"> divide 10 by 0 </button>
     </body>
 </html>

@@ -1,6 +1,7 @@
 package mvc.handler;
 
 import entity.Admin;
+import org.apache.ibatis.jdbc.Null;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ public class TestHandler {
     public String testSsm(ModelMap modelMap) {
 
         List<Admin> adminList = adminService.getAll();
+        Object obj = null;
+        obj.toString();
 
         modelMap.addAttribute("adminList", adminList);
 
@@ -42,5 +45,13 @@ public class TestHandler {
         ResultEntity<List<Integer>> resultEntity = ResultEntity.successWithData(array);
 
         return resultEntity;
+    }
+
+
+    @RequestMapping("/error0.html")
+    public String testError(String str) {
+        String s = null;
+        s.length();
+        return "???";
     }
 }
