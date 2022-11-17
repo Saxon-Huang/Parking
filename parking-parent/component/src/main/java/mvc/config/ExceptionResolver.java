@@ -1,6 +1,7 @@
 package mvc.config;
 
 import com.google.gson.Gson;
+import constants.ConstAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -23,7 +24,7 @@ public class ExceptionResolver {
             return null;
         }
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("exception", exception);
+        modelAndView.addObject(ConstAttributes.ATTR_EXCEPTION, exception);
         modelAndView.setViewName("system-error");
         return modelAndView;
     }
