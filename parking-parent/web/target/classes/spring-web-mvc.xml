@@ -26,4 +26,6 @@
         </property>
 
     </bean>-->
+
+    <!--<mvc:view-controller path="/admin/login/page.html" view-name="admin-login"/>-->
 </beans>

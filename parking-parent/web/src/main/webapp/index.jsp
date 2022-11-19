@@ -11,6 +11,7 @@
         <title>Title</title>
         <base href="http://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/"/>
         <script type="text/javascript" src="jquery/jquery-3.6.1.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
         <script type="text/javascript">
             $(function () {
                 $("#btn0").click(function () {
@@ -76,5 +77,18 @@
         <button id="btn0"> test ssm </button>
         <button id="btn1"> button 1</button>
         <button id="btn2"> divide 10 by 0 </button>
+        <a href="admin/login/page.html">admin login</a>
+        <script>
+            var obj = {
+                foo: 'bar'
+            }
+
+            Object.freeze(obj)
+
+            new Vue({
+                el: '#app',
+                data: obj
+            })
+        </script>
     </body>
 </html>
