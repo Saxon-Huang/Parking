@@ -7,13 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-  <title>Administrators Login</title>
-  <base href="http://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/"/>
-  <script type="text/javascript" src="jquery/jquery-3.6.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13"></script>
-
-</head>
+<%@include file="basePages/base-head.jsp"%>
 <body>
 
 <div id="admin">

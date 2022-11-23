@@ -26,6 +26,7 @@
         <servlet-name>springDispatcherServlet</servlet-name>
         <url-pattern>*.html</url-pattern>
         <url-pattern>*.json</url-pattern>
+        <url-pattern>*.do</url-pattern>
     </servlet-mapping>
 
     <filter>

@@ -3,6 +3,7 @@ package mvc.config;
 import com.google.gson.Gson;
 import constants.ConstAttributes;
 import constants.ConstPages;
+import exceptions.AccessForbiddenException;
 import exceptions.LoginFailedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -27,6 +28,14 @@ public class ExceptionResolver {
         String viewName = ConstPages.ADMIN_LOGIN_PAGE;
         return helperResolver(viewName, exception, request, response);
     }
+
+    @ExceptionHandler(value = AccessForbiddenException.class)
+    public ModelAndView resolveAccessForbidden(LoginFailedException exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String viewName = ConstPages.ADMIN_LOGIN_PAGE;
+        return helperResolver(viewName, exception, request, response);
+    }
+
+
 
     private ModelAndView helperResolver(String viewName, Exception exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
         if (RequestIdentify.isAjaxRequest(request)) {

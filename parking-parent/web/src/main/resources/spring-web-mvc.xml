@@ -18,14 +18,26 @@
     </bean>
 
     <!-- 基于xml的异常映射 -->
-    <!--<bean id="simpleMappingExceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+    <bean id="simpleMappingExceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="exceptionMappings">
             <props>
-                <prop key="java.lang.Exception">system-error</prop>
+                <!--<prop key="java.lang.Exception">system-error</prop>-->
+                <prop key="exceptions.AccessForbiddenException">admin-login</prop>
             </props>
         </property>
 
-    </bean>-->
+    </bean>
 
     <!--<mvc:view-controller path="/admin/login/page.html" view-name="admin-login"/>-->
+    <mvc:view-controller path="/admin/main.html" view-name="adminPages/admin-main"/>
+    
+    <!-- 注册interceptor -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--<mvc:mapping path="/**"/>-->
+            <mvc:mapping path="/admin/*"/>
+            <!--<mvc:exclude-mapping path="/**"/>-->
+            <bean class="mvc.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

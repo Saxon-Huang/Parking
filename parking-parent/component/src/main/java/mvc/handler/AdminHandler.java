@@ -34,6 +34,7 @@ public class AdminHandler {
         Admin admin = adminService.getAdminOnLogin(username, password);
 
         session.setAttribute(ConstAttributes.ATTR_LOGIN_ADMIN, admin);
-        return "temp";
+        return "redirect:/admin/main.html";
     }
+
 }
