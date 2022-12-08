@@ -64,7 +64,7 @@ ${sessionScope.loginAdmin}
         // 根据pageIndex计算得到pageNum
         var pageNum = pageIndex + 1;
         // 跳转页码
-        window.location.href = "admin/get/page.html?pageNum="+pageNum;
+        window.location.href = "admin/get/page.html?pageNum="+pageNum+"&keyword="+"${param.keyword}";
         // 由于每一个页码按钮都是超链接，所以在这个函数最后取消超链接的默认行为
         return false;
     }
