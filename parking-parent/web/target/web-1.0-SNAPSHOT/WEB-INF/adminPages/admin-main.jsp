@@ -20,8 +20,6 @@ ${sessionScope.loginAdmin}
             <button type="submit" >submit</button>
 
         </form>
-        <button id="buttonShowInfo" type="button">show info</button>
-        <button type="button" v-on:click="showPageInfo">vue but</button>
         <div id="Pagination"></div>
         <div>
                 <c:if test="${!empty requestScope.pageInfo.list}">
@@ -74,6 +72,6 @@ ${sessionScope.loginAdmin}
     $(function () {
         initPagination();
     })
-    
+
 </script>
 </html>

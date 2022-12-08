@@ -34,8 +34,8 @@
     <!-- 注册interceptor -->
     <mvc:interceptors>
         <mvc:interceptor>
-            <!--<mvc:mapping path="/**"/>-->
-            <mvc:mapping path="/admin/*"/>
+            <mvc:mapping path="/**"/>
+            <!--<mvc:mapping path="/admin/*"/>-->
             <!--<mvc:exclude-mapping path="/**"/>-->
             <bean class="mvc.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
