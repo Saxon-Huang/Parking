@@ -82,11 +82,17 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_admin
     where adm_id = #{admId,jdbcType=INTEGER}
   </select>
+  <select id="selectAdminByKeyword" resultMap="BaseResultMap">
+    select adm_id, adm_acct, adm_pswd
+    from t_admin
+    where adm_acct like concat("%", #{keyword}, "%")
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_admin
     where adm_id = #{admId,jdbcType=INTEGER}

@@ -24,6 +24,24 @@
 
         <!--数据源-->
         <property name="dataSource" ref="dataSource"/>
+
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <value>
+                            helpDialect=mysql
+
+                            <!-- 修正超过范围的页码 -->
+                            reasonable=true
+                        </value>
+
+
+
+                    </property>
+                </bean>
+            </array>
+        </property>
     </bean>
 
     <!-- 3. scanner: 用于将生成的代理对象扫描进ioc容器(此处不能用component-scanner扫描)，使autowired能装配。-->

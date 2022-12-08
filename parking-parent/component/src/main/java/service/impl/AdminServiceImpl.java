@@ -1,5 +1,7 @@
 package service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import constants.ErrorMessages;
 import entity.Admin;
 import entity.AdminExample;
@@ -52,6 +54,13 @@ public class AdminServiceImpl implements AdminService {
         }
 
         return admin;
+    }
+
+    @Override
+    public PageInfo<Admin> getPageInfo(String keyword, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Admin> admins = adminMapper.selectAdminByKeyword(keyword);
+        return new PageInfo<>(admins);
     }
 
 }
