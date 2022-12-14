@@ -51,4 +51,10 @@ public class AdminHandler {
         return ConstPages.ADMIN_MAIN;
     }
 
+    @RequestMapping("admin/add/admin.html")
+    public String addAdmin(@RequestParam("username") String admAcct, @RequestParam("password") String admPswd) {
+        adminService.saveAdmin(admAcct, admPswd);
+
+        return "redirect:/admin/get/page.html?pageNum=" + Integer.MAX_VALUE;
+    }
 }

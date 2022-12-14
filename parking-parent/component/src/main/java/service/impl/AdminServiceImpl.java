@@ -22,8 +22,25 @@ public class AdminServiceImpl implements AdminService {
     private AdminMapper adminMapper;
 
     @Override
-    public void saveAdmin(Admin admin) {
-        adminMapper.insert(admin);
+    public void saveAdmin(String admAcct, String admPswd) {
+        // 1. valid inputs?
+        if (admAcct.length() == 0 || admPswd.length() == 0) {
+            throw new LoginFailedException(ErrorMessages.INVALID_USERNAME); // TODO: create new exception
+        }
+
+        // 2. account exist?
+        AdminExample adminExample = new AdminExample();
+        AdminExample.Criteria criteria = adminExample.createCriteria();
+        criteria.andAdmAcctEqualTo(admAcct);
+        List<Admin> admins = adminMapper.selectByExample(adminExample);
+        if (admins.size() > 1) {
+            throw new LoginFailedException(ErrorMessages.INVALID_USERNAME); // TODO: create new exception
+        }
+
+        String inputPassword = Security.md5(admPswd);
+
+        Admin admin = new Admin(null, admAcct, admPswd);
+        adminMapper.insertAdmin(admin);
     }
 
     @Override

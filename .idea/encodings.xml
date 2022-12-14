@@ -9,11 +9,10 @@
     <file url="file://$PROJECT_DIR$/parking-parent/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/parking-parent/web/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/parking-parent/web/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/parking-parent/webui/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/parking-parent/webui/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/reverse/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/reverse/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/util/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/util/src/main/resources" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

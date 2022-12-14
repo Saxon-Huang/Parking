@@ -42,6 +42,6 @@ public class Connection {
     @Test
     public void testTx() {
 
-        adminService.saveAdmin(new Admin(null, "lhj", "123"));
+        adminService.saveAdmin("lhj", "123");
     }
 }

@@ -16,12 +16,15 @@ ${sessionScope.loginAdmin}
 
     <div id="admin-main-body">
         <form id="getPageInfoForm" action="admin/get/page.html" role="form" method="post">
-            <input name="keyword" type="text" placeholder="Searching keyword">
+            <label>
+                <input name="keyword" type="text" placeholder="Searching keyword">
+            </label>
             <button type="submit" >submit</button>
 
         </form>
         <div id="Pagination"></div>
         <div>
+            <h5>results containing "${param.keyword}"</h5>
                 <c:if test="${!empty requestScope.pageInfo.list}">
                     <table border="1">
                         <c:forEach items="${requestScope.pageInfo.list}" var="admin" varStatus="myStatus">
@@ -37,6 +40,16 @@ ${sessionScope.loginAdmin}
                     </table>
                 </c:if>
         </div>
+
+        <form id="addAdmin" action="admin/add/admin.html" role="form" method="post">
+            <label>
+                <input name="username" type="text" placeholder="username">
+            </label>
+            <label>
+                <input name="password" type="password" placeholder="password">
+            </label>
+            <button type="submit">add</button>
+        </form>
 
     </div>
 
@@ -64,6 +77,7 @@ ${sessionScope.loginAdmin}
         // 根据pageIndex计算得到pageNum
         var pageNum = pageIndex + 1;
         // 跳转页码
+        //window.location.href = "admin/get/page.html?pageNum="+pageNum;
         window.location.href = "admin/get/page.html?pageNum="+pageNum+"&keyword="+"${param.keyword}";
         // 由于每一个页码按钮都是超链接，所以在这个函数最后取消超链接的默认行为
         return false;

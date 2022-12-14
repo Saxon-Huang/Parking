@@ -103,13 +103,13 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="entity.Admin">
+  <insert id="insertAdmin" parameterType="entity.Admin">
     insert into t_admin (adm_id, adm_acct, adm_pswd
       )
     values (#{admId,jdbcType=INTEGER}, #{admAcct,jdbcType=VARCHAR}, #{admPswd,jdbcType=CHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="entity.Admin">
+  <insert id="insertSelectiveAdmin" parameterType="entity.Admin">
     insert into t_admin
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="admId != null">

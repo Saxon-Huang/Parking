@@ -12,7 +12,7 @@ public interface AdminMapper {
 
     int deleteByPrimaryKey(Integer admId);
 
-    int insert(Admin row);
+    int insertAdmin(Admin row);
 
     int insertSelective(Admin row);
 
