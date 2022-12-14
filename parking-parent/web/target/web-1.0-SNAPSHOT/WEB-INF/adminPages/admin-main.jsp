@@ -34,7 +34,9 @@ ${sessionScope.loginAdmin}
                                 <td>${admin.admId}</td>
                                 <td>${admin.admAcct}</td>
                                 <td>${admin.admPswd}</td>
-
+                                <td>
+                                    <a href="admin/remove/admin/${admin.admId}/${requestScope.pageInfo.pageNum}/${param.keyword}.do">remove</a>
+                                </td>
                             </tr>
                         </c:forEach>
                     </table>
@@ -45,7 +47,7 @@ ${sessionScope.loginAdmin}
             <p>Welcome, root admin! </p>
             <div>
                 <p style="color: red">${requestScope.exception.message}</p>
-                <form id="addAdmin" action="admin/add/admin.html" role="form" method="post">
+                <form id="addAdmin" action="admin/add/admin.do" role="form" method="post">
                     <label>
                         <input name="username" type="text" placeholder="username">
                     </label>

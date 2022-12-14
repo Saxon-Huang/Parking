@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import service.api.AdminService;
@@ -51,10 +52,16 @@ public class AdminHandler {
         return ConstPages.ADMIN_MAIN;
     }
 
-    @RequestMapping("admin/add/admin.html")
+    @RequestMapping("admin/add/admin.do")
     public String addAdmin(@RequestParam("username") String admAcct, @RequestParam("password") String admPswd) {
         adminService.saveAdmin(admAcct, admPswd);
 
         return "redirect:/admin/get/page.html?pageNum=" + Integer.MAX_VALUE;
+    }
+
+    @RequestMapping("admin/remove/admin/{admId}/{pageNum}/{keyword}.do")
+    public String removeAdmin(@PathVariable("admId") Integer admId, @PathVariable("pageNum") Integer pageNum, @PathVariable("keyword") String keyword) {
+        adminService.removeAdmin(admId);
+        return "redirect:/admin/get/page.html?keyword=" + keyword + "&pageNum=" + pageNum;
     }
 }

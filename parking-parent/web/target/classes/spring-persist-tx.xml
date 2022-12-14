@@ -11,7 +11,7 @@
 
     <import resource="spring-persist-mybatis.xml"/><!-- dataSource bean，不import在从ioc中找到dataSource前会有警告-->
 
-    <!-- 将service的component扫描金aoc容器-->
+    <!-- 将service的component扫描进aop容器-->
     <context:component-scan base-package="service"/>
 
     <!-- 配置事务管理器 transaction manager -->

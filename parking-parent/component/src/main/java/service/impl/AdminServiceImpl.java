@@ -101,4 +101,13 @@ public class AdminServiceImpl implements AdminService {
         return new PageInfo<>(admins);
     }
 
+    @Override
+    public void removeAdmin(Integer admId) {
+        /*AdminExample adminExample = new AdminExample();
+        AdminExample.Criteria criteria = adminExample.createCriteria();
+        criteria.andAdmAcctEqualTo(admAcct);
+        adminMapper.deleteByExample(adminExample);*/
+        adminMapper.deleteByPrimaryKey(admId);
+    }
+
 }
