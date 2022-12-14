@@ -41,16 +41,23 @@ ${sessionScope.loginAdmin}
                 </c:if>
         </div>
 
-        <p style="color: red">${requestScope.exception.message}</p>
-        <form id="addAdmin" action="admin/add/admin.html" role="form" method="post">
-            <label>
-                <input name="username" type="text" placeholder="username">
-            </label>
-            <label>
-                <input name="password" type="password" placeholder="password">
-            </label>
-            <button type="submit">add</button>
-        </form>
+        <c:if test="${sessionScope.loginAdmin.admAcct == 'adm0'}">
+            <p>Welcome, root admin! </p>
+            <div>
+                <p style="color: red">${requestScope.exception.message}</p>
+                <form id="addAdmin" action="admin/add/admin.html" role="form" method="post">
+                    <label>
+                        <input name="username" type="text" placeholder="username">
+                    </label>
+                    <label>
+                        <input name="password" type="password" placeholder="password">
+                    </label>
+                    <button type="submit">add</button>
+                </form>
+            </div>
+        </c:if>
+
+
 
     </div>
 
