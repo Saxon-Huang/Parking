@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import constants.ConstAttributes;
 import constants.ConstPages;
 import exceptions.AccessForbiddenException;
+import exceptions.AddAdminException;
 import exceptions.LoginFailedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -35,6 +36,11 @@ public class ExceptionResolver {
         return helperResolver(viewName, exception, request, response);
     }
 
+    @ExceptionHandler(value = AddAdminException.class)
+    public ModelAndView resolveAddAdmin(AddAdminException exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String viewName = ConstPages.ADMIN_MAIN;
+        return helperResolver(viewName, exception, request, response);
+    }
 
 
     private ModelAndView helperResolver(String viewName, Exception exception, HttpServletRequest request, HttpServletResponse response) throws IOException {

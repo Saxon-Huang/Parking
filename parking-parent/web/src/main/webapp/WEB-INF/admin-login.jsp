@@ -20,7 +20,7 @@
 
 
   {{ username }}
-  <p>${requestScope.exception.message}</p>
+  <p style="color: red">${requestScope.exception.message}</p>
 
 
   <a href="admin/login/page.html?username='vvv'" > test redirect login </a>

@@ -5,9 +5,14 @@ import com.github.pagehelper.PageInfo;
 import constants.ErrorMessages;
 import entity.Admin;
 import entity.AdminExample;
+import exceptions.AddAdminException;
 import exceptions.LoginFailedException;
 import mapper.AdminMapper;
+import mvc.handler.TestHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import service.api.AdminService;
 import utility.Security;
@@ -21,14 +26,18 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private AdminMapper adminMapper;
 
+    private final Logger logger = LoggerFactory.getLogger(TestHandler.class);
+
     @Override
     public void saveAdmin(String admAcct, String admPswd) {
         // 1. valid inputs?
+        // never used
         if (admAcct.length() == 0 || admPswd.length() == 0) {
-            throw new LoginFailedException(ErrorMessages.INVALID_USERNAME); // TODO: create new exception
+            throw new AddAdminException(ErrorMessages.ADD_DUPLICATE_ADMIN_ACCOUNT); // TODO: create new exception
         }
 
         // 2. account exist?
+        /*
         AdminExample adminExample = new AdminExample();
         AdminExample.Criteria criteria = adminExample.createCriteria();
         criteria.andAdmAcctEqualTo(admAcct);
@@ -36,11 +45,23 @@ public class AdminServiceImpl implements AdminService {
         if (admins.size() > 1) {
             throw new LoginFailedException(ErrorMessages.INVALID_USERNAME); // TODO: create new exception
         }
+        */
+        try {
+            String encodedPswd = Security.md5(admPswd);
+            Admin admin = new Admin(null, admAcct, encodedPswd);
+            adminMapper.insertAdmin(admin);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            logger.info(e.getClass().getName());
+            if (e instanceof DuplicateKeyException) {
+                throw new AddAdminException(ErrorMessages.ADD_DUPLICATE_ADMIN_ACCOUNT);
+            }
+        }
 
-        String inputPassword = Security.md5(admPswd);
 
-        Admin admin = new Admin(null, admAcct, admPswd);
-        adminMapper.insertAdmin(admin);
+
+
     }
 
     @Override

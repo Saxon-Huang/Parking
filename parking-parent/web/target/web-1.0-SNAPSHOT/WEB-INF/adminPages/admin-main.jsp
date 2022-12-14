@@ -41,6 +41,7 @@ ${sessionScope.loginAdmin}
                 </c:if>
         </div>
 
+        <p style="color: red">${requestScope.exception.message}</p>
         <form id="addAdmin" action="admin/add/admin.html" role="form" method="post">
             <label>
                 <input name="username" type="text" placeholder="username">
