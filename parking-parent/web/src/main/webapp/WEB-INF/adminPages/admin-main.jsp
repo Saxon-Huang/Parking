@@ -34,9 +34,12 @@ ${sessionScope.loginAdmin}
                                 <td>${admin.admId}</td>
                                 <td>${admin.admAcct}</td>
                                 <td>${admin.admPswd}</td>
-                                <td>
-                                    <a href="admin/remove/admin/${admin.admId}/${requestScope.pageInfo.pageNum}/${param.keyword}.do">remove</a>
-                                </td>
+                                <c:if test="${sessionScope.loginAdmin.admAcct == 'adm0' && admin.admAcct != 'adm0'}">
+                                    <td>
+                                        <a href="admin/remove/admin/${admin.admId}/${requestScope.pageInfo.pageNum}/${param.keyword}.do">remove</a>
+                                    </td>
+                                </c:if>
+
                             </tr>
                         </c:forEach>
                     </table>

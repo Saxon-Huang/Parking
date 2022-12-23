@@ -7,3 +7,39 @@ primary key(adm_id)
 
 INSERT INTO t_admin (adm_acct, adm_pswd) VALUES
 ('hzc', '123');
+
+create table t_role (
+role_id int not null,
+name varchar(100) not null,
+primary key(role_id)
+);
+
+
+
+create table t_park (
+park_id int not null auto_increment,
+
+primary key(park_id)
+);
+
+create table t_admin_own_park (
+adm_id int not null,
+park_id int not null,
+primary key(adm_id, park_id)
+);
+
+create table t_cell(
+cell_id int not null,
+type char(32),
+status char(32),
+
+primary key(cell_id)
+);
+
+create table t_park_contain_cell (
+park_id int not null,
+cell_id int not null,
+
+primary key(park_id, cell_id)
+
+);
