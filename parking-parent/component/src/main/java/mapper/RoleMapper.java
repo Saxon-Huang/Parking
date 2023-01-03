@@ -27,4 +27,5 @@ public interface RoleMapper {
     int updateByPrimaryKeySelective(Role row);
 
     int updateByPrimaryKey(Role row);
+    List<Role> selectRoleByKeyword(String keyword);
 }

@@ -66,6 +66,10 @@
   <sql id="Base_Column_List">
     role_id, name
   </sql>
+  <select id="selectRoleByKeyword" resultMap="BaseResultMap">
+    select role_id, name from t_role
+    where name like concat("%", #{keyword}, "%")
+  </select>
   <select id="selectByExample" parameterType="entity.RoleExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

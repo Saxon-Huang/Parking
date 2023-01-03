@@ -14,91 +14,11 @@
 <body>
 ${sessionScope.loginAdmin}
 
-    <div id="admin-main-body">
-        <form id="getPageInfoForm" action="admin/get/page.html" role="form" method="post">
-            <label>
-                <input name="keyword" type="text" placeholder="Searching keyword">
-            </label>
-            <button type="submit" >submit</button>
-
-        </form>
-        <div id="Pagination"></div>
-        <div>
-            <h5>results containing "${param.keyword}"</h5>
-                <c:if test="${!empty requestScope.pageInfo.list}">
-                    <table border="1">
-                        <c:forEach items="${requestScope.pageInfo.list}" var="admin" varStatus="myStatus">
-                            <tr>
-                                <td>${myStatus.count}</td>
-                                <td><input type="checkbox"></td>
-                                <td>${admin.admId}</td>
-                                <td>${admin.admAcct}</td>
-                                <td>${admin.admPswd}</td>
-                                <c:if test="${sessionScope.loginAdmin.admAcct == 'adm0' && admin.admAcct != 'adm0'}">
-                                    <td>
-                                        <a href="admin/remove/admin/${admin.admId}/${requestScope.pageInfo.pageNum}/${param.keyword}.do">remove</a>
-                                    </td>
-                                </c:if>
-
-                            </tr>
-                        </c:forEach>
-                    </table>
-                </c:if>
-        </div>
-
-        <c:if test="${sessionScope.loginAdmin.admAcct == 'adm0'}">
-            <p>Welcome, root admin! </p>
-            <div>
-                <p style="color: red">${requestScope.exception.message}</p>
-                <form id="addAdmin" action="admin/add/admin.do" role="form" method="post">
-                    <label>
-                        <input name="username" type="text" placeholder="username">
-                    </label>
-                    <label>
-                        <input name="password" type="password" placeholder="password">
-                    </label>
-                    <button type="submit">add</button>
-                </form>
-            </div>
-        </c:if>
-
-
-
-    </div>
+<a href="admin/manage/admin.html">manage admins</a>
 
 </body>
 <%--<script type="text/javascript" src="${pageContext.request.contextPath}/js/admin-main.js"></script>--%>
 <script type="text/javascript">
-
-    function initPagination () {
-        var totalRecord = ${requestScope.pageInfo.total};
-
-        var properties = {
-            num_edge_entries: 3, // 边缘页数
-            num_display_entries: 5, // 主体页数
-            callback: pageSelectCallback,
-            items_per_page:${requestScope.pageInfo.pageSize},
-            current_page: ${requestScope.pageInfo.pageNum - 1}, // Pagination内部使用pageIndex来管理页码，从0开始，而pageNum从1开始
-            prev_text: "previous",
-            next_text: "next"
-        }
-        // 生成页码导航条
-        $("#Pagination").pagination(totalRecord, properties);
-    }
-
-     function pageSelectCallback(pageIndex) {
-        // 根据pageIndex计算得到pageNum
-        var pageNum = pageIndex + 1;
-        // 跳转页码
-        //window.location.href = "admin/get/page.html?pageNum="+pageNum;
-        window.location.href = "admin/get/page.html?pageNum="+pageNum+"&keyword="+"${param.keyword}";
-        // 由于每一个页码按钮都是超链接，所以在这个函数最后取消超链接的默认行为
-        return false;
-    }
-
-    $(function () {
-        initPagination();
-    })
 
 </script>
 </html>

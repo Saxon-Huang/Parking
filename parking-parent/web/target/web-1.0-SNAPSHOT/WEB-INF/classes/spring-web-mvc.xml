@@ -30,7 +30,8 @@
 
     <!--<mvc:view-controller path="/admin/login/page.html" view-name="admin-login"/>-->
     <mvc:view-controller path="/admin/main.html" view-name="adminPages/admin-main"/>
-    
+    <mvc:view-controller path="/admin/manage/admin.html" view-name="adminPages/admin-manage"/>
+
     <!-- 注册interceptor -->
     <mvc:interceptors>
         <mvc:interceptor>

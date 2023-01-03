@@ -49,7 +49,7 @@ public class AdminHandler {
     ) {
         PageInfo<Admin> pageInfo = adminService.getPageInfo(keyword, pageNum, pageSize);
         modelMap.addAttribute(ConstAttributes.ATTR_PAGE_INFO, pageInfo);
-        return ConstPages.ADMIN_MAIN;
+        return ConstPages.ADMIN_MANAGE_ADMIN;
     }
 
     @RequestMapping("admin/add/admin.do")
