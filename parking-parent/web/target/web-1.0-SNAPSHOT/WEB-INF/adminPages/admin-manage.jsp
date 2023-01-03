@@ -68,6 +68,13 @@
 </body>
 <script type="text/javascript">
 
+<%--
+    pagination作用：
+        生成导航栏，其中每个按钮（上/下一页、页码）绑定一个回调函数pageSelectCallBack(Integer)；
+    回调函数：
+        此处是向后端查询对应页码的数据，刷新页面显示。
+        也可异步，先获取全部数据，再在回调函数中批量显示。
+--%>
     function initPagination () {
         var totalRecord = ${requestScope.pageInfo.total};
 

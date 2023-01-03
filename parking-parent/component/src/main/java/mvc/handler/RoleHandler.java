@@ -17,7 +17,7 @@ public class RoleHandler {
     private RoleService roleService;
 
     @ResponseBody
-    @RequestMapping("/role/get/role/page.json")
+    @RequestMapping("/admin/get/role/page.json")
     public ResultEntity<PageInfo<Role>> getRolePageInfo(
             @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
             @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,

@@ -13,8 +13,13 @@
 <title>admin home</title>
 <body>
 ${sessionScope.loginAdmin}
+<div>
+    <a href="admin/manage/admin.html">manage admins</a>
+</div>
 
-<a href="admin/manage/admin.html">manage admins</a>
+<div>
+    <a href="admin/manage/role.html">manage roles</a>
+</div>
 
 </body>
 <%--<script type="text/javascript" src="${pageContext.request.contextPath}/js/admin-main.js"></script>--%>
