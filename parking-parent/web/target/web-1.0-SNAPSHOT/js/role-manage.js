@@ -5,6 +5,21 @@ var role_app = new Vue({
         tableReady: false,
         inputKeyword: "",
     },
+
+    /*created: function () {
+        console.log("vue created")
+        var currentdate = new Date();
+        var datetime = "Last Sync: " + currentdate.getDay() + "/" + currentdate.getMonth()
+            + "/" + currentdate.getFullYear() + " @ "
+            + currentdate.getHours() + ":"
+            + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+        console.log(datetime)
+    },*/
+
+    mounted: function () {
+        this.generatePagination()
+    },
+
     methods: {
         generatePagination: function () {
             this.getRolePage();
@@ -68,7 +83,7 @@ var role_app = new Vue({
 
         searchKeyword: function () {
             window.keyword = this.inputKeyword
-            this.generatePagination()
+            //this.generatePagination()
         },
 
     }

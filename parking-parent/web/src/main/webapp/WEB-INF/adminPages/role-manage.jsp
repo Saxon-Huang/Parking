@@ -12,13 +12,12 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/jquery/jquery.pagination.js"></script>
 
 <script type="text/javascript">
-/*    $(function (){
+    $(function (){
         window.pageNum = 1;
         window.pageSize = 5;
         window.keyword = "";
 
-        //generatePagination();
-    });*/
+    });
 </script>
 <head>
     <title>role management page</title>
