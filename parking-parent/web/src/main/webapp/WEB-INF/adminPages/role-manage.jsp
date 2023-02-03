@@ -12,27 +12,29 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/jquery/jquery.pagination.js"></script>
 
 <script type="text/javascript">
-    $(function (){
+/*    $(function (){
         window.pageNum = 1;
         window.pageSize = 5;
         window.keyword = "";
 
         //generatePagination();
-    });
+    });*/
 </script>
 <head>
-    <title>role management</title>
+    <title>role management page</title>
 </head>
 <body>
     <div id="role-page">
         <button type="button" v-on:click="generatePagination">start</button>
-        <form id="getRolePageInfoForm" action="admin/manage/role.json" role="form" method="post">
-            <label>
-                <input name="keyword" type="text" placeholder="Searching keyword">
-            </label>
-            <button type="submit" >submit</button>
 
-        </form>
+        <div>
+            <label>
+                <input v-model="inputKeyword" type="text" placeholder="Search role ..."/>
+            </label>
+            <button type="button" v-on:click="searchKeyword" >search</button>
+        </div>
+
+
         <div id="Pagination"></div>
         <div id="table">
             <table border="1" v-if="tableReady">

@@ -3,6 +3,7 @@ var role_app = new Vue({
     data: {
         rolePageInfo: null,
         tableReady: false,
+        inputKeyword: "",
     },
     methods: {
         generatePagination: function () {
@@ -17,7 +18,7 @@ var role_app = new Vue({
                 type: "get",
                 data: {
                     "pageNum": window.pageNum,
-                    "pageSize": window.pageSize,
+                     "pageSize": window.pageSize,
                     "keyword": window.keyword
                 },
                 dataType: "json",
@@ -65,6 +66,10 @@ var role_app = new Vue({
             return false;
         },
 
+        searchKeyword: function () {
+            window.keyword = this.inputKeyword
+            this.generatePagination()
+        },
 
     }
 

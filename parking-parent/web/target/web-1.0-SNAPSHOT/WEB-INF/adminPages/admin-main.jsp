@@ -12,7 +12,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/jquery/jquery.pagination.js"></script>
 <title>admin home</title>
 <body>
-${sessionScope.loginAdmin}
+Welcome! ${sessionScope.loginAdmin}
 <div>
     <a href="admin/manage/admin.html">manage admins</a>
 </div>

@@ -3,10 +3,11 @@ var role_app = new Vue({
     data: {
         rolePageInfo: null,
         tableReady: false,
+        inputKeyword: "",
     },
     methods: {
         generatePagination: function () {
-            console.log("got data:\n"+this.getRolePage());
+            this.getRolePage();
             this.createTable();
         },
 
@@ -17,7 +18,7 @@ var role_app = new Vue({
                 type: "get",
                 data: {
                     "pageNum": window.pageNum,
-                    "pageSize": window.pageSize,
+                     "pageSize": window.pageSize,
                     "keyword": window.keyword
                 },
                 dataType: "json",
@@ -26,18 +27,16 @@ var role_app = new Vue({
                     //console.log(response);
                     if (response.result === "FAILED") {
                         alert(response.message);
-                        return null;
+                        return;
                     }
                     that.rolePageInfo = response.data;
-                    return response.data;
-                    //initPagination(rolePageInfo);
                 },
                 error: function (response) {
                     console.log(response);
-                    return null;
                 }
 
             });
+            return null;
         },
 
         createTable: function () {
@@ -67,6 +66,10 @@ var role_app = new Vue({
             return false;
         },
 
+        searchKeyword: function () {
+            window.keyword = this.inputKeyword
+            this.generatePagination()
+        },
 
     }
 

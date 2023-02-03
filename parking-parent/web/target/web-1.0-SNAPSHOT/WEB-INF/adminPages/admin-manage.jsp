@@ -17,7 +17,7 @@
 <div id="admin-main-body">
     <form id="getPageInfoForm" action="admin/get/page.html" role="form" method="post">
         <label>
-            <input name="keyword" type="text" placeholder="Searching keyword">
+            <input name="keyword" type="text" placeholder="Search admin ...">
         </label>
         <button type="submit" >submit</button>
 
