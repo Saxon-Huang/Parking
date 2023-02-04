@@ -13,6 +13,7 @@ role_id int not null auto_increment,
 name varchar(100) not null,
 primary key(role_id)
 );
+alter table t_role add unique(name);
 
 INSERT INTO t_role (name) VALUES
 ('park manager'),

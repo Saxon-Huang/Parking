@@ -5,6 +5,10 @@ public class Role {
 
     private String name;
 
+    public Role(Integer roleId, String roleName) {
+        name=roleName;
+    }
+
     public Integer getRoleId() {
         return roleId;
     }

@@ -4,6 +4,8 @@ var role_app = new Vue({
         rolePageInfo: null,
         tableReady: false,
         inputKeyword: "",
+        newRoleName: "",
+        addRoleResult: "",
     },
 
     /*created: function () {
@@ -51,7 +53,7 @@ var role_app = new Vue({
                 }
 
             });
-            return null;
+            return null; // TODO:
         },
 
         createTable: function () {
@@ -85,6 +87,57 @@ var role_app = new Vue({
             window.keyword = this.inputKeyword
             this.generatePagination()
         },
+
+        addRole: function () {
+            this.addRoleResult = ""
+            // console.log(this.newRoleName)
+            const that = this
+            $.ajax({
+                url: "admin/add/role.json",
+                type: "post",
+                data: {
+                    "roleName": this.newRoleName
+                },
+                dataType: "json",
+                async: false,
+                success: function (response) {
+                    if (response.result === "FAILED") {
+                        that.addRoleResult = that.newRoleName + " failed!"
+                        return;
+                    }
+                    that.addRoleResult = "Role [" + that.newRoleName + "] added."
+                    console.log(that.rolePageInfo)
+                    window.pageNum = that.rolePageInfo.navigateLastPage + 1
+                    that.generatePagination()
+                },
+                error: function (response) {
+                    that.addRoleResult = that.newRoleName + " failed!"
+                }
+
+            });
+        },
+
+        deleteRole: function (roleId) {
+            //console.log(roleId)
+            const that = this
+                $.ajax({
+                    url: "admin/remove/role.json",
+                    type: "post",
+                    data: {
+                        "roleId": roleId
+                    },
+                    dataType: "json",
+                    async: false,
+                    success: function (response) {
+                        console.log(response);
+                        that.generatePagination()
+                    },
+                    error: function (response) {
+                        console.log(response);
+                    }
+
+                });
+        }
 
     }
 

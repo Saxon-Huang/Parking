@@ -27,4 +27,20 @@ public class RoleHandler {
         return ResultEntity.successWithData(pageInfo); // 异常映射系统负责在异常时返回ResultEntity.failed() json
     }
 
+    @ResponseBody
+    @RequestMapping("/admin/add/role.json")
+    public ResultEntity<String> addRole(@RequestParam(value = "roleName", defaultValue = "") String roleName) {
+        roleService.saveRole(new Role(null, roleName));
+
+        return ResultEntity.successWithoutData();
+    }
+
+    @ResponseBody
+    @RequestMapping("/admin/remove/role.json")
+    public ResultEntity<String> removeRole(@RequestParam(value = "roleId") Integer roleId) {
+        roleService.removeRole(roleId);
+
+        return ResultEntity.successWithoutData();
+    }
+
 }
