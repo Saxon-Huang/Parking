@@ -20,6 +20,21 @@ INSERT INTO t_role (name) VALUES
 ('user integrator manager'),
 ('payment support');
 
+create table t_menu (
+m_id int not null auto_increment,
+parent_m_id int not null,
+m_name varchar(100) not null,
+m_url varchar(200) not null,
+primary key(m_id),
+unique(m_name)
+);
+
+insert into t_menu (parent_m_id, m_name, m_url) values
+(0, 'home page', 'home_url'),
+(1, 'admin management', 'admin_url'),
+(1, 'role management', 'role_url')
+;
+
 
 
 
