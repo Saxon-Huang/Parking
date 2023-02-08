@@ -28,6 +28,9 @@ Welcome! ${sessionScope.loginAdmin}
     <button type="button" v-on:click="getNodes">get nodes</button>
 </div>
 
+<div>
+    <ul id="treeDemo" class="ztree"></ul>
+</div>
 </body>
 <%--<script type="text/javascript" src="${pageContext.request.contextPath}/js/admin-main.js"></script>--%>
 <script type="text/javascript" src="js/menu.js"></script>
